@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "gyms" ALTER COLUMN "phone" SET DATA TYPE TEXT;
