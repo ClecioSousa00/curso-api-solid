@@ -6,6 +6,7 @@ import { validate } from './validate'
 import { metrics } from './metrics'
 import { history } from './history'
 import { verifyUserRole } from '@/http/middlewares/verify-user-role'
+import { Role } from '@prisma/client'
 
 export async function checkInsRoutes(app: FastifyInstance) {
   app.addHook('onRequest', verifyJWT)
@@ -16,7 +17,7 @@ export async function checkInsRoutes(app: FastifyInstance) {
   app.post('/gyms/:gymId/check-ins', create)
   app.patch(
     '/check-ins/:checkInId/validate',
-    { onRequest: [verifyUserRole('ADMIN')] },
+    { onRequest: [verifyUserRole(Role.ADMIN)] },
     validate,
   )
 }
